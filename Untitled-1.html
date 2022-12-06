@@ -1,0 +1,67 @@
+/* create a texting aplication using HTML */
+
+function sendMessage(){
+    alert('hello');
+    //destination html element where message and all should appear
+    var listMsg=document.getElementById('messages'); 
+    //grab the message only from input box
+    var txtMsg=document.getElementById('txtMsg');
+    var newFlag=false;
+    var tempStr=txtMsg.value;
+    var alphabets=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z'];
+    var disAllowedChars=['$','%','^','&',')','(','_','+','*'];
+
+  
+    //if message string is empty then do nothing, just ask user to input something
+    if(tempStr!=''){
+  
+        
+
+        if(tempStr.length<80){
+            //add the message in as list box
+            var eleList=document.createElement('li');
+            eleList.style.marginTop='1%';
+            eleList.style.alignment='center';
+            
+            eleList.style.width="50%";
+            eleList.style.borderRadius="10%";
+            eleList.style.textAlign="left";
+            
+            //text in message bubble
+            var msgtxt=document.createTextNode(tempStr);
+
+            //add in message box list
+            eleList.appendChild(msgtxt);
+
+            //add the big list of messages element
+            listMsg.appendChild(eleList);
+
+            //clear the input box
+            txtMsg.value='';
+
+        }
+
+    }
+   
+    else if(txtMsg.value==''){
+        alert('Please Enter Something!');
+    }
+   
+    else{
+        alert('You can enter only 80 order!');
+        
+    }
+}
+
+
+var submitBtn=document.getElementById('btnSubmit');
+//send message on button click
+submitBtn.addEventListener('click',sendMessage);
+//send message on pressing enter
+txtMsg.addEventListener('keyup',function (event){
+    event.preventDefault();
+    //if enter key is pressed
+    if(event.keyCode==13){
+        sendMessage();
+    }
+});
